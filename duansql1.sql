@@ -1,10 +1,19 @@
+CREATE DATABASE Movies_Project
 -- Movies Data Exploration
 USE Movies_Project
 
 -- Select Data that we are going to be using
 SELECT * FROM dbo.movie_statistic_dataset
-WHERE director_deathYear = 'N/A'
-ORDER BY 2 ASC
+GO
+
+-- Top 5 movies have the worst ratings
+SELECT TOP(5) movie_title, movie_averageRating FROM dbo.movie_statistic_dataset
+ORDER BY movie_averageRating ASC
+GO
+
+-- Top 20 movies have the most votes
+SELECT TOP(20) movie_title, movie_numerOfVotes FROM dbo.movie_statistic_dataset
+ORDER BY movie_numerOfVotes DESC
 GO
 
 -- Financial gain from the movies
@@ -38,5 +47,3 @@ SUM(profit)/1000 AS profit_in_thousand
 FROM DIRSUC
 GROUP BY director_name
 ORDER BY 2 DESC
-
-
